@@ -40,6 +40,11 @@ cd CPUfreq
 ```
 2. 运行实验
 ```bash
+① 创建虚拟环境
+cd ~/CPUfreq #这是在`CPUfreq`目录创建虚拟环境，也可选其他目录。`~`代表直达“安装`Ubuntu 24.04`后，以自己名字命名的目录。
+python -m venv CPUfreq_venv #创建虚拟环境。CPUfreq_venv是本仓库默认的虚拟环境名，可以换成其他名字。
+source ~/CPUfreq/CPUfreq_venv/bin/activate #激活虚拟环境。
+② 启动五方案轮询脚本
 sudo python3 cpufreq_tester.py
 ```
 轮询过程约 5 分钟，脚本会依次测试五种 `Governor`，每种策略下使用 `stress-ng` 施加 30 秒负载，采集频率和 CPU 使用率数据。
