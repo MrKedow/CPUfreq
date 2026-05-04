@@ -60,7 +60,7 @@ schedutil	700000	69.8
 performance	1500000	68.5
 powersave	600000	71.2
 ```
-<img width="786" height="465" alt="image" src="https://github.com/user-attachments/assets/985386eb-5186-4457-a210-5c8205f09347" />
+<img width="951" height="157" alt="image" src="https://github.com/user-attachments/assets/7d678cfe-061f-4b2b-8817-10ab5d62586b" />
 
 4. 生成图表
 ```bash
@@ -71,6 +71,12 @@ python3 plot_results.py #交互
 python3 plot_results.py cpufreq_results_YYYYMMDD_HHMMSS.csv #指定
 ```
 以上命令会输出 `cpufreq_comparison.png`，包含频率与 CPU 使用率的双 Y 轴对比图。
+```bash
+· 蓝色柱状图：每种 Governor 的平均频率（GHz）
+· 红色折线图：每种 Governor 的平均 CPU 使用率（%）
+· 标注值：可视化CPU平均频率（GHz）
+```
+
 <img width="1920" height="1140" alt="image" src="https://github.com/user-attachments/assets/be801516-3107-4939-acf9-f650569388b6" />
 
 <img width="1920" height="1140" alt="image" src="https://github.com/user-attachments/assets/0329167c-1157-4b36-8dab-44935eb2b1fe" />
