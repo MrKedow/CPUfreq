@@ -26,7 +26,7 @@
 - Python: `Python 3.8+`
 - 系统工具：`stress-ng、linux-tools-common、cpufrequtils`
 
-## 安装依赖
+## 安装主依赖
 
 ```bash
 sudo apt update
@@ -48,6 +48,7 @@ source ~/CPUfreq/CPUfreq_venv/bin/activate #激活虚拟环境。
 sudo python3 cpufreq_tester.py
 ```
 轮询过程约 5 分钟，脚本会依次测试五种 `Governor`，每种策略下使用 `stress-ng` 施加 30 秒负载，采集频率和 CPU 使用率数据。
+<img width="1920" height="1140" alt="image" src="https://github.com/user-attachments/assets/e40f7855-c3b8-4a39-87b3-684d57c1a43c" />
 
 3. 查看结果
 实验完成后会在当前目录生成 `cpufreq_results_YYYYMMDD_HHMMSS.csv` 文件，内容格式：
@@ -59,11 +60,22 @@ schedutil	700000	69.8
 performance	1500000	68.5
 powersave	600000	71.2
 ```
+<img width="786" height="465" alt="image" src="https://github.com/user-attachments/assets/985386eb-5186-4457-a210-5c8205f09347" />
+
 4. 生成图表
 ```bash
-python3 plot_results.py cpufreq_results_YYYYMMDD_HHMMSS.csv
+① 安装matplotlib模块
+pip install matplotlib
+② 交互式选择.csv文件，或直接指定.csv文件
+python3 plot_results.py #交互
+python3 plot_results.py cpufreq_results_YYYYMMDD_HHMMSS.csv #指定
 ```
-此命令会输出 `cpufreq_comparison.png`，包含频率与 CPU 使用率的双 Y 轴对比图。
+以上命令会输出 `cpufreq_comparison.png`，包含频率与 CPU 使用率的双 Y 轴对比图。
+<img width="1920" height="1140" alt="image" src="https://github.com/user-attachments/assets/be801516-3107-4939-acf9-f650569388b6" />
+
+<img width="1920" height="1140" alt="image" src="https://github.com/user-attachments/assets/0329167c-1157-4b36-8dab-44935eb2b1fe" />
+
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/8265f59a-fa18-436f-aea5-5cd42cecce66" />
 
 ## 实验结论
 在低负载场景下，`schedutil` 策略以接近 `ondemand` 的吞吐量实现了更低的平均频率，能效比最优。`performance` 策略功耗最高，`powersave` 策略导致 CPU 占用率偏高（任务执行时间拉长）。对于车载场景中常见的传感器轮询、日志上报等间歇性低负载任务，推荐使用 `schedutil`。
