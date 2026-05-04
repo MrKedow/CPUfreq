@@ -1,0 +1,6 @@
+governor,avg_freq_kHz,avg_cpu_usage_percent
+ondemand,1210318,28.89
+conservative,991410,28.13
+schedutil,1207813,27.94
+performance,1575423,28.84
+powersave,815349,28.19
